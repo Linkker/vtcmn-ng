@@ -1,0 +1,213 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header px-3 py-3">
+    <h4 class="modal-title" id="modal-basic-title">Xác nhập muốn xoá<p></p></h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body px-3 py-3">
+      <p>Bạn chắc chắn muốn xoá metadata này?</p>
+  </div>
+  <div class="modal-footer px-3 py-3">
+    <button type="button" class="btn btn-outline-dark px-2 py-2" (click)="DelMetadata()">Save</button>
+    <button type="button" class="btn btn-vtc px-2 py-2" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>
+
+<div id="doc2" class="yui-t7">
+  <div id="inner">
+    <div id="hd">
+      <div class="yui-gc">
+        <div class="yui-u first">
+          <h1> {{metadata?.Category}} </h1>
+          <h2>Đơn vị sản xuất: {{metadata?.Publisher}}</h2>
+          <h2>Kênh phát sóng: {{metadata?.Channel}}</h2>
+        </div>
+
+        <div class="yui-u">
+          <div class="col-md-auto col-sm-auto m-1">
+            <button *ngIf="auth.isTrungtam()" type="button" class="ml-2 btn btn-outline-primary px-2 py-2" (click)="buttonEdit()">Sửa</button>
+            <button *ngIf="auth.isTrungtam()" type="button" class="ml-2 btn btn-outline-danger px-2 py-2" (click)="buttonDel(content)">Xoá</button>
+            <button *ngIf="auth.isTrungtam()" type="button" class="ml-2 btn btn-outline-success px-2 py-2" (click)="buttonAdd()">Thêm</button>
+            <button type="button" class="ml-2 btn btn-outline-warning px-2 py-2" (click)="buttonBack()">Trở về</button>
+          </div>
+          <div class="contact-info">
+            <h3>Tập : {{metadata?.Episode}}</h3>
+            <h3>Phần: {{metadata?.Season}}</h3>
+          </div><!--// .contact-info -->
+        </div>
+      </div><!--// .yui-gc -->
+    </div><!--// hd -->
+
+    <div id="bd">
+      <div id="yui-main">
+        <div class="yui-b">
+
+          <div class="yui-gf">
+            <div class="yui-u first">
+              <h2>Tên chương trình</h2>
+            </div>
+            <div class="yui-u">
+              <p> {{metadata?.Title}} </p>
+            </div>
+          </div><!--// .yui-gf -->
+
+          <div class="yui-gf">
+            <div class="yui-u first">
+              <h2>Tóm tắt nội dung</h2>
+            </div>
+            <div class="yui-u">
+              <p>{{metadata?.Description}}</p>
+            </div>
+          </div><!--// .yui-gf -->
+
+          <div class="yui-gf">
+            <div class="yui-u first">
+              <h2>Tổ chức sản xuất</h2>
+            </div>
+            <div class="yui-u">
+
+                <div class="talent">
+                  <h2>Thể loại</h2>
+                  <p>{{metadata?.GenredDescription}}</p>
+                </div>
+
+                <div class="talent">
+                  <h2>Đạo diễn/TCSX</h2>
+                  <p>{{metadata?.Director}}</p>
+                </div>
+
+                <div class="talent">
+                  <h2>Người duyệt</h2>
+                  <p>{{metadata?.ProgramEvaluator}}</p>
+                </div>
+            </div>
+          </div><!--// .yui-gf -->
+
+          <div class="yui-gf">
+            <div class="yui-u first">
+              <h2>Phạm vi bản quyền</h2>
+            </div>
+            <div class="yui-u">
+
+                <div class="talent">
+                  <h2>Bản quyền</h2>
+                  <p>{{metadata?.Copyrights}}</p>
+                </div>
+
+                <div class="talent">
+                  <h2>Trạng thái bản quyền</h2>
+                  <p>{{metadata?.CopyrightsStatus}}</p>
+                </div>
+
+                <div class="talent">
+                  <h2>Phạm vi bản quyền</h2>
+                  <p>{{metadata?.CopyrightedPlatform}}</p>
+                </div>
+
+                <div class="talent">
+                  <h2>Ngày phát sóng</h2>
+                  <p>{{metadata?.OnairDate}}</p>
+                </div>
+
+                <div class="talent">
+                  <h2>Bản quyền bắt đầu</h2>
+                  <p>{{metadata?.CopyrightedStart}}</p>
+                </div>
+
+                <div class="talent">
+                  <h2>Bản quyền kết thúc</h2>
+                  <p>{{metadata?.CopyrightedEnd}}</p>
+                </div>
+            </div>
+          </div><!--// .yui-gf -->
+
+          <div class="yui-gf">
+            <div class="yui-u first">
+              <h2>Trạng thái</h2>
+            </div>
+            <div class="yui-u">
+              <ul class="talent">
+                <li>Ngày sản xuất</li>
+                <li class="last">{{metadata?.Date}}</li>
+              </ul>
+
+              <ul class="talent">
+                <li>Thời gian tồn tại</li>
+                <li class="last">{{metadata?.TimeToLive}}</li>
+              </ul>
+
+              <ul class="talent">
+                <li>Phụ đề</li>
+                <li class="last">{{metadata?.Subtitles}}</li>
+              </ul>
+            </div>
+          </div><!--// .yui-gf-->
+
+          <div class="yui-gf">
+            <div class="yui-u first">
+              <h2>Thời lượng</h2>
+            </div>
+            <div class="yui-u">
+              <ul class="talent">
+                <li>Tên file</li>
+                <li>{{metadata?.FileName}}</li>
+                <li>Định dạng file</li>
+                <li>{{metadata?.FileFormat}}</li>
+                <li>Tên file mở rộng</li>
+                <li class="last">{{metadata?.Extenedtitle}}</li>
+              </ul>
+
+              <ul class="talent">
+                <li>Thời lượng</li>
+                <li>{{metadata?.Duration}}</li>
+                <li>Time code đầu</li>
+                <li>{{metadata?.StartTimecode}}</li>
+                <li>Time code cuối</li>
+                <li class="last">{{metadata?.EndTimecode}}</li>
+              </ul>
+
+              <ul class="talent">
+                <li>Mã file</li>
+                <li class="last">{{metadata?.FileCode}}</li>
+              </ul>
+            </div>
+          </div><!--// .yui-gf-->
+
+          <div class="yui-gf">
+
+            <div cass="yui-u first">
+              <h2>Thông tin khác</h2>
+            </div><!--// .yui-u -->
+
+            <div class="yui-u">
+
+              <div class="job">
+                <h2>DVB Categories</h2>
+                <p>{{metadata?.DVBCategories}}</p>
+              </div>
+
+              <div class="job">
+                <h2>Thông tin hình ảnh</h2>
+                <p>{{metadata?.PromoteImages}}</p>
+              </div>
+
+            </div><!--// .yui-u -->
+          </div><!--// .yui-gf -->
+
+          <div class="yui-gf last">
+            <div class="yui-u first">
+              <h2>Chủ đề và từ khoá tìm kiếm</h2>
+            </div>
+            <div class="yui-u">
+              <h2>{{metadata?.SubjectandKeywords_}}</h2>
+            </div>
+          </div><!--// .yui-gf -->
+
+
+        </div><!--// .yui-b -->
+      </div><!--// yui-main -->
+    </div><!--// bd -->
+
+  </div><!-- // inner -->
+</div><!--// doc -->

@@ -1,0 +1,28 @@
+<ul class="nav nav-tabs nav-justified" role="tablist">
+  <li class="nav-item">
+      <a class="nav-link  active clickable w-100 h-100" data-toggle="tab" (click)="Tab=1">Lịch sản xuất</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link clickable w-100 h-100" data-toggle="tab" (click)="Tab=2">Thông tin chung</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link clickable w-100 h-100" data-toggle="tab" (click)="Tab=3">Thông tin phòng ban</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link clickable w-100 h-100" data-toggle="tab" (click)="Tab=4">Hoạt động đoàn thể</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade show active" *ngIf="Tab===1">
+    <vtc-tab01></vtc-tab01>
+  </div>
+  <div class="tab-pane fade show active" *ngIf="Tab===2">
+    <vtc-tab02></vtc-tab02>
+  </div>
+  <div class="tab-pane fade show active" *ngIf="Tab===3">
+    <vtc-tab03></vtc-tab03>
+  </div>
+  <div class="tab-pane fade show active" *ngIf="Tab===4">
+    <vtc-tab04></vtc-tab04>
+  </div>
+</div>

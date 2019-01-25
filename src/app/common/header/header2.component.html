@@ -1,0 +1,76 @@
+<!-- Nav Menu -->
+
+<div class="nav-menu fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-dark navbar-expand-lg">
+                        <a class="navbar-brand" routerLink="/"><img src="../../../assets/images/logo.png" class="img-fluid" alt="logo"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav ml-auto" routerLinkActive="active">
+                                <li class="nav-item"> <a class="nav-link" routerLink="" fragment="home"> HOME <span class="sr-only">(current)</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" routerLink="" fragment="infomation">THÔNG TIN</a> </li>
+                                <li class="nav-item"> <a class="nav-link" routerLink="" fragment="anq">HỎI ĐÁP</a> </li>
+                                <div class="nav-item dropdown clickable">
+                                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" routerLink="/metadatas" fragment="meta">METADATA</a>
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" routerLink="/metadatas/search">Search Metadata</a>
+                                    <a class="dropdown-item" routerLink="/metadatas/create">Create Metadata</a>
+                                  </div>
+                                </div>
+                                <li class="nav-item"> <a class="nav-link" routerLink="/chat" fragment="chit">CHAT</a> </li>
+                              <ng-container *ngIf="!auth.isAuthenticated()">
+                                <li class="nav-item"> <a class="nav-link" routerLink="/register" fragment="dangky">ĐĂNG KÝ</a> </li>
+                                <li class="nav-item"> <a routerLink="/login" fragment="dangnhap" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Đăng Nhập</a></li>
+                              </ng-container>
+                              <ng-container *ngIf="auth.isAuthenticated()">
+                                <div class="nav-item dropdown clickable">
+                                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{auth.getEmail()}}
+                                  </a>
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" routerLink="/">Create Rental</a>
+                                    <a class="dropdown-item" routerLink="/">Manage Rentals</a>
+                                    <a class="dropdown-item" routerLink="/">Manage Bookings</a>
+                                  </div>
+                                </div>
+                                <li class="nav-item clickable"> <a class="nav-link" (click)="logout()">LOGOUT</a> </li>
+                              </ng-container>
+                              </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--Home-->
+<header class="bg-gradient my-3" id="home" >
+    <div class="container"  >
+        <h1>TRUNG TÂM VTC MIỀN NAM</h1>
+        <p class="tagline">Đài Truyền hình Kỹ thuật số VTC - thuộc Đài tiếng nói Việt Nam (VOV) </p>
+    </div>
+    <!-- Casural : Hinh truot  -->
+    <div class="section" >
+        <div class="container">
+          <div class="img-gallery owl-carousel owl-theme">
+              <img src="./assets/images/thumbnail/vtc1_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc2_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc3_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc4_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc5_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc6_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc7_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc8_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc9_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc10_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc11_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc13_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc14_thumbnail.jpg" alt="image">
+              <img src="./assets/images/thumbnail/vtc16_thumbnail.jpg" alt="image">
+            </div>
+        </div>
+    </div>
+</header>
+<!--End Home-->

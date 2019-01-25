@@ -1,0 +1,41 @@
+<section id="MetadataListing">
+  <div class="row">
+    <div class="col-md-12 col-auto">
+        <div class="card example-sroll scrollbar-ripe-malinka">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                    <th scope="col">Stt</th>
+                    <th scope="col">Tên chương trình</th>
+                    <th scope="col">Tên chuyên mục</th>
+                    <th scope="col">Thể loại</th>
+                    <th scope="col">ĐV sản xuất</th>
+                    <th scope="col">DVB Categories</th>
+                    <th scope="col">Ngày sx</th>
+                    <th scope="col">Thời lượng</th>
+                    <th scope="col">Phạm vi bản quyền</th>
+                    <th scope="col">Chi tiết</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let metadata of metadatas | paginate: { itemsPerPage: 10, currentPage: p }; let i=index;">
+                    <th scope="row">{{i+1}} </th>
+                    <td>{{metadata.Title}} </td>
+                    <td>{{metadata.Category}} </td>
+                    <td>{{metadata.GenredDescription}} </td>
+                    <td>{{metadata.Publisher}} </td>
+                    <td>{{metadata.DVBCategories}} </td>
+                    <td>{{metadata.Date}} </td>
+                    <td>{{metadata.Duration}} </td>
+                    <td>{{metadata.CopyrightedPlatform}} </td>
+                    <td><a routerLink="/metadatas/{{metadata._id}}" class="ti ti-marker-alt"> </a></td>
+                  </tr>
+                </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+  <div class="row float-right mt-2">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</section>

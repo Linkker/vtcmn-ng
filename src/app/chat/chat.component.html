@@ -1,0 +1,54 @@
+<!-- // CHAT tab.chit -->
+<div class="section light-bg" id="chit">
+  <div class="container">
+      <div class="section-title mb-3">
+          <small>- CHAT -</small>
+          <h3>HỖ TRỢ TRAO ĐỔI THÔNG TIN</h3>
+      </div>
+      <div class="row mb-3">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label for="username">Tên: </label>
+                <h4 class="text-warning"><u><i> {{user}} </i></u></h4>
+                <!-- <small id="userHelp" class="form-text text-muted">Type your username.</small> -->
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <label form="roomInput">Chọn phòng</label>
+            <select [disabled]="buttonJoin" name="roomInput" id="roomInput" class="form-control" [(ngModel)]="room">
+                <option *ngFor="let key of phong" [value]="key.value">{{ key.label }}</option>
+            </select>
+        </div>
+        <div class="row col pull-right align-items-end mb-2 sm-3">
+                <div *ngIf="!buttonJoin" class="col-md-4"><button class="clickable btn btn-sm btn-info" (click)="join()">Gia nhập</button></div>
+                <div *ngIf="buttonJoin" class="col-md-4"><button class="clickable btn btn-sm btn-warning" (click)="leave()">Rời phòng</button></div>
+        </div>
+      </div>
+      <div class="row mb-3" *ngIf="buttonJoin">
+        <div class="col-sm-3">
+          <div ngx-auto-scroll class="card card-body example-sroll scrollbar-ripe-malinka">
+            <div  *ngFor="let u of listUser">
+              <span class="text-truncate">{{u.user}}_{{u.room}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div ngx-auto-scroll class="card card-body example-sroll scrollbar-ripe-malinka mb-3">
+            <div  *ngFor="let item of messageArray">
+              <span *ngIf="item.user!=user"><strong>{{item.user}} : </strong> {{item.message}}</span>
+              <span *ngIf="item.user===user"class="float-right"><strong>{{item.user}} : </strong> {{item.message}}</span>
+            </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-sm-10">
+              <input type="text" class="form-control" [(ngModel)]="messageText" (keyup.enter)="sendMessage()">
+            </div>
+            <div class="col-sm-2">
+              <button type="button" class="btn btn-success" (click)="sendMessage()">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<!-- // end CHAT tab.chit -->

@@ -1,0 +1,61 @@
+<!-- // REGISTER tab.dangky -->
+
+<div class="section light-bg" id="dangky">
+  <div class="container">
+      <div class="section-title">
+          <small>- ĐĂNG KÝ -</small>
+          <h3>ĐĂNG KÝ THÔNG TIN NGƯỜI DÙNG</h3>
+      </div>
+      <section id="register">
+        <div class="vtc-form">
+          <div class="row">
+            <div class="col-md-5">
+              <h1 class="page-title">ĐĂNG KÝ</h1>
+              <form #registerForm="ngForm">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input [(ngModel)]="formData.email"
+                         name="email"
+                         type="email"
+                         class="form-control"
+                         id="email"
+                         required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input [(ngModel)]="formData.password"
+                         name="password"
+                         type="password"
+                         class="form-control"
+                         id="password"
+                         required>
+                </div>
+                <div class="form-group">
+                  <label for="passwordConfirmation">Confirm Password</label>
+                  <input [(ngModel)]="formData.passwordConfirmation"
+                         name="passwordConfirmation"
+                         type="password"
+                         class="form-control"
+                         id="passwordConfirmation"
+                         required>
+                </div>
+                <button [disabled]="!registerForm.form.valid" (click)="register()" type="submit" class="btn btn-success">Đồng ý</button>
+              </form>
+              <div *ngIf="errors.length > 0" class="alert alert-danger">
+                <p *ngFor="let error of errors">
+                  {{error.detail}}
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 ml-auto">
+              <div class="image-container">
+                <h2 class="catchphrase">As our member you have access to most awesome places in the world.</h2>
+                <img src="../../../assets/images/auth/register-image.jpg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </div>
+</div>
+<!-- // end REGISTER tab.dangky -->

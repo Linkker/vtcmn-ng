@@ -1,0 +1,69 @@
+<!-- // LOGIN tab.dangnhap -->
+
+<div class="section light-bg" id="dangnhap">
+  <div class="container">
+      <div class="section-title">
+          <small>- ĐĂNG NHẬP -</small>
+          <h3>THÔNG TIN ĐĂNG NHẬP</h3>
+      </div>
+      <section id="login">
+        <div class="vtc-form">
+          <div class="row">
+            <div class="col-md-5">
+              <h1 class="page-title">ĐĂNG NHẬP</h1>
+              <div *ngIf="notifyMessage" class="alert alert-success">
+                {{notifyMessage}}
+              </div>
+              <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email"
+                        class="form-control"
+                        id="email"
+                        formControlName="email">
+                  <div *ngIf="isInvalidForm('email')" class="alert alert-danger">
+                    <div *ngIf="isRequired('email')">
+                      Email is required.
+                    </div>
+                    <div *ngIf="loginForm.controls['email'].errors.pattern">
+                      Must be valid email format!
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password"
+                        class="form-control"
+                        id="password"
+                        formControlName="password">
+                </div>
+                <div class="container">
+                  <div class="row justify-content-md-center">
+                    <div div class="col-md-auto col-sm-auto m-1">
+                      <button [disabled]="!loginForm.valid" name=signin type="submit" class="btn btn-success" (click)="buttonClicked = 'signin'">Đăng nhập</button>
+                    </div>
+                    <div div class="col-md-auto col-sm-auto m-1">
+                      <button class="btn btn-danger" name=signingoogle type="submit" (click)="buttonClicked = 'signingoogle'"><span class="ti ti-google"></span> Google </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <!-- <div *ngIf="errors.length > 0" class="alert alert-danger">
+                <p *ngFor="let error of errors">
+                  {{error.detail}}
+                </p>
+              </div> -->
+            </div>
+            <div class="col-md-6 ml-auto">
+              <div class="image-container">
+                <h2 class="catchphrase">Hundreds of awesome places in reach of few clicks.</h2>
+                <img src="../../../assets/images/auth/login-image.jpg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </div>
+</div>
+<!-- // end LOGIN tab.dangnhap -->

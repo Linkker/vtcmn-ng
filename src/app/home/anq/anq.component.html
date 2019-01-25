@@ -1,0 +1,150 @@
+<div class="row pt-4">
+    <div class="col-md-4">
+        <h5 class="feedback-form-title text-center">ĐẶT CÂU HỎI</h5>
+
+          <form #AnqForm="ngForm">
+
+            <ng-template #content let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">{{formData.feedbackName}}<p></p></h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <p>Chủ đề: <em>{{formData.feedbackTitle}}</em></p>
+                  <p>Nội dung hỏi: <em>{{formData.feedbackMessenger}}?</em></p>
+
+                  <p>Là thông tin muốn hỏi?</p>
+              </div>
+              <div *ngIf="errors.length > 0" class="alert alert-danger modal-error">
+                <p *ngFor="let error of errors">
+                  {{error.detail}}
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="AnqClick()">Save</button>
+                <button type="button" class="btn btn-vtc" (click)="c('Close click')">Close</button>
+              </div>
+            </ng-template>
+
+            <div class="form-group">
+                <label for="feedbackName">Name</label>
+                <input [(ngModel)]="formData.feedbackName"
+                        name="feedbackName"
+                        type="text"
+                        class="form-control"
+                        id="feedbackName"
+                        placeholder="Enter your name"
+                        required>
+            </div>
+
+            <div class="form-group">
+                <label for="feedbackTitle">Title</label>
+                <input [(ngModel)]="formData.feedbackTitle"
+                        name="feedbackTitle"
+                        type="text"
+                        class="form-control"
+                        id="feedbackTitle"
+                        placeholder="Title of your feedback"
+                        required>
+            </div>
+
+            <div class="form-group">
+                <label for="feedbackMessenger">Message</label>
+                <textarea [(ngModel)]="formData.feedbackMessenger"
+                        name="feedbackMessenger"
+                        type="text"
+                        class="form-control"
+                        id="feedbackMessenger"
+                        placeholder="Enter your message, then hit the submit"
+                        rows="6"
+                        required>
+                </textarea>
+            </div>
+
+            <button [disabled]="!AnqForm.form.valid" (click)="openConfirmModal(content)" type="submit" class="btn btn-default btn-outline-primary pull-right">Gửi câu hỏi</button>
+          </form>
+
+          <div *ngIf="errors.length > 0" class="alert alert-danger">
+            <p *ngFor="let error of errors">
+              {{error.detail}}
+            </p>
+          </div>
+
+      </div>
+
+      <div class="col-md-8">
+          <div class="maincontent feedback">
+              <h5 class="article-title mb-3 text-center">CÁC CÂU HỎI GẦN ĐÂY</h5>
+
+              <div class="card example-sroll scrollbar-ripe-malinka">
+                <div class="card-body">
+                    <div class="mb-1" *ngFor="let anq of anqs | paginate: {id:'anq',itemsPerPage:5, currentPage:p}; let i=index">
+                        <div class="card">
+                          <div class="card-body">
+                            <h6 class="card-title">{{anq.feedbackName}}: {{anq.feedbackTitle}}</h6>
+                            <p class="card-text">{{anq.feedbackMessenger}}?</p>
+                            <p class="card-text"><small class="text-muted"><em>Câu hỏi lúc: {{anq.feedbackCreateAt | date:'short'}}</em></small></p>
+                            <div *ngIf="anq.feedbackAnswer.length > 0">
+                                <p>
+                                  <li class="card-text" *ngFor="let mes of anq.feedbackAnswer"><em>{{mes.messengerEmail}}: {{mes.messenger}}</em></li>
+                                </p>
+                            </div>
+
+                            <div class="card-footer bg-transparent" *ngIf="auth.isAuthenticated()">
+                                <div class="container">
+                                    <div class="row justify-content-md-end" *ngIf="buttonChoice !== i && buttonChoice !== i+'m' && auth.isAuthenticated()">
+                                      <div div class="col-md-auto col-sm-auto m-1" *ngIf="auth.isTrungtam()">
+                                        <button class="btn btn-danger btn-sm" name=del type="submit"  (click)="buttonChoice = i"> Xoá </button>
+                                      </div>
+                                      <div div class="col-md-auto col-sm-auto m-1">
+                                        <button class="btn btn-success btn-sm" name=messenger type="submit" (click)="buttonChoice = i+'m'"> Trả lời </button>
+                                      </div>
+                                    </div>
+                                    <div class="row justify-content-md-end" *ngIf="buttonChoice === i">
+                                        <div div class="col-md-auto col-sm-auto m-1">
+                                          <p class="confirm-message">Bạn muốn xóa câu hỏi này?</p>
+                                        </div>
+                                        <div div class="col-md-auto col-sm-auto m-1">
+                                          <button (click)="del(anq._id)" class="btn btn-success btn-outline-success">Yes</button>
+                                        </div>
+                                        <div div class="col-md-auto col-sm-auto m-1">
+                                          <button (click)="buttonChoice = undefined" class="btn btn-danger btn-outline-danger">No</button>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-md-center" *ngIf="buttonChoice === i+'m' && auth.isAuthenticated()">
+                                        <div div class="container col-md-12 col-sm-auto m-1">
+                                            <div class="form-group">
+                                                <!--<label for="AnsMessenger">Message</label>-->
+                                                <textarea [(ngModel)]="AnsMessenger"
+                                                        name="AnsMessenger"
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="AnsMessenger"
+                                                        placeholder="Enter your message, then hit the submit"
+                                                        rows="3"
+                                                        required>
+                                                </textarea>
+                                            </div>
+                                        </div>
+                                        <div div class="col-md-auto col-sm-auto m-1">
+                                          <button (click)="ansMessenger(anq._id, AnsMessenger)" class="btn btn-success btn-outline-success">Gửi</button>
+                                        </div>
+                                        <div div class="col-md-auto col-sm-auto m-1">
+                                          <button (click)="buttonChoice = undefined" class="btn btn-danger btn-outline-danger">Hủy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class='mt-1'>
+                <pagination-controls id="anq" *ngIf="anqs.length>5" class="float-right" (pageChange)="p=$event"></pagination-controls>
+              </div>
+          </div>
+      </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="d-flex flex-column flex-lg-row">
+  <div class="w-100">
+      <h2>Hoạt động đoàn</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-10" >
+            <pagination-controls *ngIf="infos.length>0" id="tab04" class="float-right" (pageChange)="p=$event"></pagination-controls>
+          </div>
+          <div class="col-2" *ngIf="auth.isAuthMod()&&auth.isTrungtam()">
+            <div class="row mb-2" *ngIf="!addTab04 && !editTab04 && !delTab04">
+              <div class="col-md-4"><a class="clickable btn-sm btn-success btn-outline-success px-3 ti ti-plus" (click)="AddButtonTab04()"></a></div>
+              <div class="col-md-4"><a class="clickable btn-sm btn-warning btn-outline-warning px-3 ti ti-pencil-alt" *ngFor="let info of infos | paginate: {id:'tab04',itemsPerPage:1, currentPage:p};" (click)="EditButtonTab04(info.content)"></a></div>
+              <div class="col-md-4"><a class="clickable btn-sm btn-danger btn-outline-danger px-3 ti ti-trash" *ngFor="let info of infos | paginate: {id:'tab04',itemsPerPage:1, currentPage:p};" (click)="DelButtonTab04()"></a></div>
+            </div>
+            <div class="row mb-2" *ngIf="addTab04 || editTab04 || delTab04">
+              <div *ngIf ="addTab04" class="col-md-6"><button class="clickable btn btn-sm btn-success btn-outline-success ti ti-save" (click)="Add()"></button></div>
+              <div *ngIf ="editTab04" class="col-md-6"><button class="clickable btn btn-sm btn-success btn-outline-success ti ti-save" *ngFor="let info of infos | paginate: {id:'tab04',itemsPerPage:1, currentPage:p};" (click)="Edit(info._id)"></button></div>
+              <div *ngIf ="delTab04" class="col-md-6"><button class="clickable btn btn-sm btn-success btn-outline-success ti ti-check" *ngFor="let info of infos | paginate: {id:'tab04',itemsPerPage:1, currentPage:p};" (click)="Del(info._id)"></button></div>
+              <div class="col-md-6"><button class="clickable btn btn-sm btn-danger btn-outline-danger ti ti-close" (click)="Cancel()"></button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card example-sroll scrollbar-ripe-malinka">
+        <div class="card-body">
+          <div *ngFor="let info of infos | paginate: {id:'tab04',itemsPerPage:1, currentPage:p}">
+            <p *ngIf="!addTab04 && !editTab04" [innerHTML]="info.content | sanitizeHtml"></p>
+          </div>
+          <ck-editor *ngIf="addTab04 || editTab04" name="editor4" [(ngModel)]="editorTab04" skin="moono-lisa" language="en" [fullPage]="false"></ck-editor>
+        </div>
+      </div>
+  </div>
+</div>
+
+

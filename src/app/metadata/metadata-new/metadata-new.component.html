@@ -1,0 +1,219 @@
+<section id="copyMetadata">
+  <div id="doc2" class="yui-t7">
+    <div id="inner">
+      <div id="hd">
+        <div class="yui-gc">
+          <div class="yui-u first">
+            <h1><input type=text [(ngModel)]="copyMetadata.Category" placeholder="Tên Chuyên mục"></h1>
+            <h2>Đơn vị sản xuất: <input type=text [(ngModel)]="copyMetadata.Publisher"></h2>
+            <h2>Kênh phát sóng: <input type=text [(ngModel)]="copyMetadata.Channel"></h2>
+          </div>
+
+          <div class="yui-u">
+            <div class="col-md-auto col-sm-auto m-1">
+                <button type="button" class="ml-2 btn btn-outline-primary px-2 py-2" (click)="buttonOK()">Save</button>
+                <button type="button" class="ml-2 btn btn-outline-warning px-2 py-2" (click)="buttonBack()">Trở về</button>
+            </div>
+            <div class="contact-info">
+              <h3>Tập : <input type=text [(ngModel)]="copyMetadata.Episode"></h3>
+              <h3>Phần: <input type=text [(ngModel)]="copyMetadata.Season"></h3>
+            </div><!--// .contact-info -->
+          </div>
+        </div><!--// .yui-gc -->
+      </div><!--// hd -->
+
+      <div id="bd">
+        <div id="yui-main">
+          <div class="yui-b">
+
+            <div class="yui-gf">
+              <div class="yui-u first">
+                <h2>Tên chương trình</h2>
+              </div>
+              <div class="yui-u">
+                <p>
+                    <textarea class="w-100" rows="3" type=text [(ngModel)]="copyMetadata.Title">
+                    </textarea>
+                </p>
+              </div>
+            </div><!--// .yui-gf -->
+
+            <div class="yui-gf">
+              <div class="yui-u first">
+                <h2>Tóm tắt nội dung</h2>
+              </div>
+              <div class="yui-u">
+                <p>
+                    <textarea class="w-100" rows="3" type=text [(ngModel)]="copyMetadata.Description">
+                    </textarea>
+                </p>
+              </div>
+            </div><!--// .yui-gf -->
+
+            <div class="yui-gf">
+              <div class="yui-u first">
+                <h2>Tổ chức sản xuất</h2>
+              </div>
+              <div class="yui-u">
+
+                  <div class="talent">
+                    <h2>Thể loại</h2>
+                    <p><textarea class="w-100" rows="3" type=text [(ngModel)]="copyMetadata.GenredDescription">
+                      </textarea></p>
+                  </div>
+
+                  <div class="talent">
+                    <h2>Đạo diễn/TCSX</h2>
+                    <p><textarea class="w-100" rows="3" type=text [(ngModel)]="copyMetadata.Director">
+                      </textarea></p>
+                  </div>
+
+                  <div class="talent">
+                    <h2>Người duyệt</h2>
+                    <p><textarea class="w-100" rows="3" type=text [(ngModel)]="copyMetadata.ProgramEvaluator">
+                      </textarea></p>
+                  </div>
+              </div>
+            </div><!--// .yui-gf -->
+
+            <div class="yui-gf">
+              <div class="yui-u first">
+                <h2>Phạm vi bản quyền</h2>
+              </div>
+              <div class="yui-u">
+
+                  <div class="talent">
+                    <h2>Bản quyền</h2>
+                    <p><input class="w-100" type=text [(ngModel)]="copyMetadata.Copyrights">
+                    </p>
+                  </div>
+
+                  <div class="talent">
+                    <h2>Trạng thái bản quyền</h2>
+                    <p><input class="w-100" type=text [(ngModel)]="copyMetadata.CopyrightsStatus">
+                    </p>
+                  </div>
+
+                  <div class="talent">
+                    <h2>Phạm vi bản quyền</h2>
+                    <p><input class="w-100" type=text [(ngModel)]="copyMetadata.CopyrightedPlatform">
+                    </p>
+                  </div>
+
+                  <div class="talent">
+                    <h2>Ngày phát sóng</h2>
+                    <p><input class="w-100" type=text [(ngModel)]="copyMetadata.OnairDate">
+                    </p>
+                  </div>
+
+                  <div class="talent">
+                    <h2>Bản quyền bắt đầu</h2>
+                    <p><input class="w-100" type=text [(ngModel)]="copyMetadata.CopyrightedStart">
+                    </p>
+                  </div>
+
+                  <div class="talent">
+                    <h2>Bản quyền kết thúc</h2>
+                    <p><input class="w-100" type=text [(ngModel)]="copyMetadata.CopyrightedEnd">
+                    </p>
+                  </div>
+              </div>
+            </div><!--// .yui-gf -->
+
+            <div class="yui-gf">
+              <div class="yui-u first">
+                <h2>Trạng thái</h2>
+              </div>
+              <div class="yui-u">
+                <ul class="talent">
+                  <li>Ngày sản xuất</li>
+                  <li class="last"><input class="w-100" type=text [(ngModel)]="copyMetadata.Date"></li>
+                </ul>
+
+                <ul class="talent">
+                  <li>Thời gian tồn tại</li>
+                  <li class="last"><input class="w-100" type=text [(ngModel)]="copyMetadata.TimeToLive"></li>
+                </ul>
+
+                <ul class="talent">
+                  <li>Phụ đề</li>
+                  <li class="last"><input class="w-100" type=text [(ngModel)]="copyMetadata.Subtitles"></li>
+                </ul>
+              </div>
+            </div><!--// .yui-gf-->
+
+            <div class="yui-gf">
+              <div class="yui-u first">
+                <h2>Thời lượng</h2>
+              </div>
+              <div class="yui-u">
+                <ul class="talent">
+                  <li>Tên file</li>
+                  <li><input class="w-100" type=text [(ngModel)]="copyMetadata.FileName"></li>
+                  <li>Định dạng file</li>
+                  <li><input class="w-100" type=text [(ngModel)]="copyMetadata.FileFormat"></li>
+                  <li>Tên file mở rộng</li>
+                  <li class="last"></li><li><input class="w-100" type=text [(ngModel)]="copyMetadata.Extenedtitle"></li>
+                </ul>
+
+                <ul class="talent">
+                  <li>Thời lượng</li>
+                  <li><input class="w-100" type=text [(ngModel)]="copyMetadata.Duration"></li>
+                  <li>Time code đầu</li>
+                  <li><input class="w-100" type=text [(ngModel)]="copyMetadata.StartTimecode"></li>
+                  <li>Time code cuối</li>
+                  <li class="last"><input class="w-100" type=text [(ngModel)]="copyMetadata.EndTimecode"></li>
+                </ul>
+
+                <ul class="talent">
+                  <li>Mã file</li>
+                  <li class="last"><input class="w-100" type=text [(ngModel)]="copyMetadata.FileCode"></li>
+                </ul>
+              </div>
+            </div><!--// .yui-gf-->
+
+            <div class="yui-gf">
+
+              <div cass="yui-u first">
+                <h2>Thông tin khác</h2>
+              </div><!--// .yui-u -->
+
+              <div class="yui-u">
+
+                <div class="job">
+                  <h2>DVB Categories</h2>
+                  <p><textarea class="w-100" rows="3" type=text [(ngModel)]="copyMetadata.DVBCategories">
+                    </textarea>
+                  </p>
+                </div>
+
+                <div class="job">
+                  <h2>Thông tin hình ảnh</h2>
+                  <p><textarea class="w-100" rows="3" type=text [(ngModel)]="copyMetadata.PromoteImages">
+                    </textarea>
+                  </p>
+                </div>
+
+              </div><!--// .yui-u -->
+            </div><!--// .yui-gf -->
+
+            <div class="yui-gf last">
+              <div class="yui-u first">
+                <h2>Chủ đề và từ khoá tìm kiếm</h2>
+              </div>
+              <div class="yui-u">
+                <h2><textarea class="w-100" rows="3" type=text [(ngModel)]="copyMetadata.SubjectandKeywords_">
+                  </textarea></h2>
+              </div>
+            </div><!--// .yui-gf -->
+
+
+          </div><!--// .yui-b -->
+        </div><!--// yui-main -->
+      </div><!--// bd -->
+
+    </div><!-- // inner -->
+  </div><!--// doc -->
+
+</section>
+
